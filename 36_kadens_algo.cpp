@@ -1,23 +1,31 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-// Function to find the sum of subarray with maximum sum
-int maxSubarraySum(vector<int> &arr) {
-    int res = arr[0];
-  
-    // Outer loop for starting point of subarray
-      for(int i = 0; i < arr.size(); i++) {
-        int currSum = 0;
+
+// brute force approach 
+// int maxSubarraySum(vector<int> &arr) {
+//       int res = arr[0];
+//       for(int i = 0; i < arr.size(); i++) {
+//         int currSum = 0;
       
-        // Inner loop for ending point of subarray
-        for(int j = i; j < arr.size(); j++) {
-            currSum = currSum + arr[j];
-          
-            // Update res if currSum is greater than res
-            res = max(res, currSum);
-        }
+//         for(int j = i; j < arr.size(); j++) {
+//             currSum = currSum + arr[j];
+//             res = max(res, currSum);
+//          }
+//     }
+//     return res;
+// }
+
+// optimized approach 
+int maxSubarraySum(vector<int> &arr) {
+    int maxSoFar = arr[0];   
+    int currMax = arr[0];    
+
+    for(int i = 1; i < arr.size(); i++) {
+        currMax = max(arr[i], currMax + arr[i]); 
+        maxSoFar = max(maxSoFar, currMax);       
     }
-    return res;
+    return maxSoFar;
 }
 
 int main() {
